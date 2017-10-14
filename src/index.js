@@ -1,6 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import { BrowserRouter } from 'react-router-dom';
+import { BrowserRouter, Route } from 'react-router-dom';
 import 'semantic-ui-css/semantic.min.css';
 import { createStore, applyMiddleware } from 'redux';
 import { Provider } from 'react-redux';
@@ -17,9 +17,13 @@ if(localStorage.bookwormJWT){
   const user = { token: localStorage.bookwormJWT };
   store.dispatch(userLoggedIn(user));
 }
+
+// App is enclosed in route to pass history to it
 ReactDOM.render(
   <BrowserRouter>
-    <Provider store= {store}><App /></Provider>
+    <Provider store= {store}>
+      <Route component={App} />
+    </Provider>
   </BrowserRouter>,
   document.getElementById('root')
 );
