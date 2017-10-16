@@ -35,6 +35,7 @@ class SignupForm extends React.Component {
     const errors = {};
     if(!isEmail(data.email)) errors.email = "Invalid email";
     if(!data.password) errors.password = "Can't be blank";
+    return errors;
   };
 
 
