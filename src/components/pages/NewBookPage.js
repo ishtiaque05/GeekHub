@@ -1,9 +1,4 @@
-<<<<<<< Updated upstream
-import React from 'react';
-import { Segment } from 'semantic-ui-react';
-import SearchBookForm from '../forms/SearchBookForm';
-import BookForm from '../forms/BookForm';
-=======
+
 import React from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
@@ -12,16 +7,13 @@ import axios from "axios";
 import SearchBookForm from "../forms/SearchBookForm";
 import BookForm from "../forms/BookForm";
 import { createBook } from "../../actions/books";
->>>>>>> Stashed changes
 
 class NewBookPage extends React.Component {
   state = {
     book: null
   };
 
-<<<<<<< Updated upstream
-  onBookSelect = book => this.setState({ book });
-=======
+
   onBookSelect = book => {
     this.setState({ book });
     axios
@@ -29,7 +21,6 @@ class NewBookPage extends React.Component {
       .then(res => res.data.pages)
       .then(pages => this.setState({ book: { ...book, pages } }));
   };
->>>>>>> Stashed changes
 
   addBook = book =>
     this.props
