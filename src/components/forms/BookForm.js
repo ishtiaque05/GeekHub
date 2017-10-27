@@ -17,9 +17,8 @@ class BookForm extends React.Component {
     loading: false,
     errors: {}
   };
-  // everytime a component is change
-  // componentWillReceiveProps is called
-  componentWillReceiveProps(props){
+
+  componentWillReceiveProps(props) {
     this.setState({
       data: {
         goodreadsId: props.book.goodreadsId,
@@ -29,7 +28,7 @@ class BookForm extends React.Component {
         pages: props.book.pages
       },
       covers: props.book.covers
-    })
+    });
   }
 
   onChange = e =>
@@ -41,7 +40,10 @@ class BookForm extends React.Component {
   onChangeNumber = e =>
     this.setState({
       ...this.state,
-      data: { ...this.state.data, [e.target.name]: parseInt(e.target.value, 10) }
+      data: {
+        ...this.state.data,
+        [e.target.name]: parseInt(e.target.value, 10)
+      }
     });
 
   onSubmit = e => {
@@ -65,13 +67,13 @@ class BookForm extends React.Component {
       index: newIndex,
       data: { ...this.state.data, cover: covers[newIndex] }
     });
-  }
+  };
 
   validate = data => {
     const errors = {};
-    if(!data.title) errors.title = "Can't be blank";
-    if(!data.authors) errors.authors = "Can't be blank";
-    if(!data.pages) errors.pages = "Can't be blank";
+    if (!data.title) errors.title = "Can't be blank";
+    if (!data.authors) errors.authors = "Can't be blank";
+    if (!data.pages) errors.pages = "Can't be blank";
     return errors;
   };
 
@@ -85,16 +87,16 @@ class BookForm extends React.Component {
             <Grid.Row>
               <Grid.Column>
                 <Form.Field error={!!errors.title}>
-                  <label htmlFor="title">Book Title </label>
+                  <label htmlFor="title">Book Title</label>
                   <input
                     type="text"
                     id="title"
                     name="title"
-                    placeholder="title"
+                    placeholder="Title"
                     value={data.title}
                     onChange={this.onChange}
                   />
-                  { errors.title && <InlineError text={errors.title} />}
+                  {errors.title && <InlineError text={errors.title} />}
                 </Form.Field>
 
                 <Form.Field error={!!errors.authors}>
@@ -107,7 +109,7 @@ class BookForm extends React.Component {
                     value={data.authors}
                     onChange={this.onChange}
                   />
-                  { errors.authors && <InlineError text={errors.authors} />}
+                  {errors.authors && <InlineError text={errors.authors} />}
                 </Form.Field>
 
                 <Form.Field error={!!errors.pages}>
@@ -117,32 +119,31 @@ class BookForm extends React.Component {
                     type="text"
                     id="pages"
                     name="pages"
+
                     // To handle control and uncontrolled element in react
                     // data.pages is set a value
                     value={data.pages !== undefined ? data.pages : 'Loading....'}
+
                     onChange={this.onChangeNumber}
                   />
-                  { errors.pages && <InlineError text={errors.pages} />}
+                  {errors.pages && <InlineError text={errors.pages} />}
                 </Form.Field>
-
               </Grid.Column>
 
               <Grid.Column>
                 <Image size="small" src={data.cover} />
-                { this.state.covers.length > 1 && (
-                  <a role="button"
-                     tabIndex={0}
-                     onClick={this.changeCover}
-                   >
-                     Another cover
-                 </a>
+                {this.state.covers.length > 1 && (
+                  <a role="button" tabIndex={0} onClick={this.changeCover}>
+                    Another cover
+                  </a>
                 )}
               </Grid.Column>
             </Grid.Row>
+
             <Grid.Row>
-              <Button primary>Send</Button>
+              <Button primary>Save</Button>
             </Grid.Row>
-         </Grid>
+          </Grid>
         </Form>
       </Segment>
     );
